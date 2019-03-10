@@ -2281,7 +2281,7 @@ var ImageOrderComponent = /** @class */ (function () {
     ImageOrderComponent.prototype.uploadFile = function (file) {
         var _this = this;
         var accessToken = {
-            container: 'images',
+            container: 'images-' + this.order._id,
             filename: file.name,
             storageAccessToken: this.data.config.blobStorageAccesToken,
             storageUri: this.data.config.blobStorageContainer
@@ -2295,7 +2295,8 @@ var ImageOrderComponent = /** @class */ (function () {
         this.progressValue = progress;
         if (progress == 100) {
             this.isLoaded = true;
-            this.order.image = this.data.config.blobStorageUrl + file.name,
+            console.log(this.order);
+            this.order.image = this.data.config.blobStorageUrl + this.order._id + '-' + file.name,
                 this.orderClient.update(this.data.token, this.data.config, this.order).subscribe(function (newOrder) {
                     _this.dialogRef.close();
                 });

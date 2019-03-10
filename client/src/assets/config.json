@@ -7,6 +7,6 @@
     "formatDate":"DD/MM/YYYY",
     "expSesionTime":3600000,
     "blobStorageUrl":"https://metaworst.s3.amazonaws.com/",
-    "blobStorageContainer":"http://localhost:3000/services/api/",
+    "blobStorageContainer":"http://52.28.16.79/services/api/",
     "blobStorageAccesToken":"?sv=2018-03-28&ss=b&srt=sco&sp=rwdlac&se=2035-12-31T08:31:13Z&st=2019-02-16T00:31:13Z&spr=https,http&sig=PWIdOCznwmoAwAnZZx5DUZYX0zyTuH88ZLz2%2BTevosk%3D"
 }

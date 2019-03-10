@@ -56,7 +56,7 @@ export class ImageOrderComponent implements OnInit {
   uploadFile(file: File): Observable<IUploadProgress> {
     
     const accessToken: ISasToken = {
-      container: 'images',
+      container: 'images-' + this.order._id,
       filename: file.name,
       storageAccessToken:this.data.config.blobStorageAccesToken,
       storageUri: this.data.config.blobStorageContainer
@@ -71,7 +71,8 @@ export class ImageOrderComponent implements OnInit {
     this.progressValue = progress;
     if(progress == 100){
       this.isLoaded = true;
-      this.order.image = this.data.config.blobStorageUrl + file.name,
+      console.log(this.order);
+      this.order.image = this.data.config.blobStorageUrl + this.order._id + '-' + file.name,
       this.orderClient.update(this.data.token, this.data.config, this.order).subscribe((newOrder) => {          
         this.dialogRef.close();
       });

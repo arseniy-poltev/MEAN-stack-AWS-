@@ -90,9 +90,9 @@ export class App {
       });
     });
     //image upload to s3 
-    router.put('/api/images/:key', (req, res) => {
+    router.put('/api/images-:resourseId/:key', (req, res) => {
       const params = {
-        Key: req.params.key,
+        Key: req.params.resourseId + '-' + req.params.key,
         Body: req,
         Bucket: this.configObj.aws.s3.Bucket,
         ACL: this.configObj.aws.s3.ACL
