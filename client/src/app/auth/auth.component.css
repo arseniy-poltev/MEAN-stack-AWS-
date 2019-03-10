@@ -1,0 +1,10 @@
+.container{
+    width:100%;
+}
+mat-form-field{
+    width: 320px;
+}
+a{
+    margin-top:30px;
+    cursor: pointer;
+}

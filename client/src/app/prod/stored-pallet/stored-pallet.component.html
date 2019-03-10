@@ -1,0 +1,22 @@
+<mat-card>
+  <mat-card-title>{{pallet.name}} - {{counterBoxes}} &nbsp; Cajas</mat-card-title>
+  <mat-card-content>
+    <form #f="ngForm" (ngSubmit)="onStored(f)">
+      <mat-form-field>
+        <input 
+          matInput 
+          [matDatepicker]="picker" 
+          placeholder="Introduce fecha de salida del pallet" 
+          [(ngModel)]="pallet.storerDate"
+          name="storerDate"
+          >
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>       
+      <div fxLayout="row" fxFlexFill fxLayoutGap="10px" fxLayoutAlign="center center">
+        <button mat-raised-button type="submit" color="primary">Aceptar</button>      
+        <a mat-raised-button (click)="close()" color="secondary">Cancelar</a>
+      </div>
+  </form>    
+  </mat-card-content>
+</mat-card>

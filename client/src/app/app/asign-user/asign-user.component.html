@@ -1,0 +1,19 @@
+<mat-card>
+  <mat-card-title>{{data.title}}</mat-card-title>
+  <mat-card-subtitle>Usuarios Asignados</mat-card-subtitle>
+  <mat-card-content>
+    <mat-list >
+      <mat-list-item *ngFor='let userAsigned of asignedUsersList'> {{userAsigned.name}} </mat-list-item>
+    </mat-list>
+    <mat-form-field *ngIf='showActions'>
+      <mat-select [(ngModel)]="userAsigned">
+        <mat-option>None</mat-option>
+        <mat-option *ngFor='let user of usersList' [value]="user">{{user.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="onAsigned()" *ngIf='showActions'>Asignar</button>
+      <button mat-raised-button color="primary" (click)="close()">Salir</button>
+    </mat-card-actions>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,13 @@
+.color-item{
+    width: 80px;
+    display:inline-flex;
+    border:1px solid rgba(0,0,0,0.2);
+    padding: 4px;
+    margin-top:5px;
+}
+.mat-checkbox{
+    padding: 0px 0px 10px 0px;
+}
+.action-btn-container{
+    padding: 15px 0px 0px 0px;
+}

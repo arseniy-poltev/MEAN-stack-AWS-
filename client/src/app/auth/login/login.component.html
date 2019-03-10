@@ -1,0 +1,27 @@
+<div class="container">
+  <form fxLayoutAlign="center center" fxLayout="column" #f="ngForm" (ngSubmit)="onSubmit(f)">
+      <h2>Sign In to your account</h2>
+      <mat-form-field>
+        <mat-label>Your Email</mat-label>
+        <input 
+          matInput 
+          placeholder="Email"
+          type="email"
+          ngModel
+          name="email"
+          email
+          required>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Your password</mat-label>
+        <input 
+          matInput 
+          placeholder="Password"
+          required
+          type="password"
+          ngModel
+          name="password">
+      </mat-form-field>
+      <button mat-raised-button type="submit" color="primary">Sign in</button>
+  </form>
+</div>

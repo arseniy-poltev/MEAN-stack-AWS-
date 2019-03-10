@@ -1,0 +1,19 @@
+<div class="comments-dialog">
+<h2 mat-dialog-title>Mensajes</h2>
+<mat-dialog-content fxLayout="column">
+  <mat-card *ngFor="let comment of comments">
+    <mat-card-subtitle>{{comment.user.name}}</mat-card-subtitle>
+    <mat-card-content>
+      <p>{{comment.comment}}</p>
+    </mat-card-content>
+  </mat-card>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <div *ngIf='showActions'>
+    <mat-form-field class="form-comment">
+      <textarea  matInput placeholder="comment" [(ngModel)]="comment"></textarea>
+      <mat-icon matSuffix (click)='onSubmit()'>send</mat-icon>
+    </mat-form-field>
+  </div>
+</mat-dialog-actions>
+</div>

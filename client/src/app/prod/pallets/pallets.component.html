@@ -1,0 +1,96 @@
+<mat-card>
+    <mat-card-title>{{data.title}}</mat-card-title>
+    <mat-card-subtitle>{{data.company.name}}</mat-card-subtitle>
+    <mat-card-actions fxLayout="row" fxLayoutAlign="space-between center">
+        <mat-form-field             
+            class="field-filter">
+            <mat-select  
+              placeholder="Ref Pedido" 
+              (selectionChange)="applyFilter()" 
+              [(ngModel)]="orderFilter">      
+              <mat-option 
+                *ngFor="let order of filterOrderValues" 
+                value="{{order}}">
+                {{order}}
+            </mat-option>        
+            </mat-select>    
+        </mat-form-field>
+        <button mat-raised-button color="primary" class="btn-filterAction" (click)="cleanFilter()">Limpiar filtro</button>
+        <button mat-raised-button color="primary" (click)="onCreate()" class="addButton">Añadir</button>
+    </mat-card-actions>
+    <mat-card-content>
+        <mat-tab-group dynamicHeight>
+            <mat-tab label="Mis Pallets">
+                <div class="example-small-box mat-elevation-z4" *ngFor="let pallet of filteredPalletsCreator">
+                    <mat-accordion>
+                        <mat-expansion-panel (opened)="view != 'all' ? loadBoxes(pallet) : null"
+                            hideToggle = "view == 'all'?true:false">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    {{pallet.name}}
+                                </mat-panel-title>
+                                <mat-panel-description fxLayout="row" fxLayoutAlign="end center" *ngIf="view == 'all'">
+                                    <button mat-icon-button color="primary" (click)="onDelete(pallet)" *ngIf="showProd">
+                                        <mat-icon >delete</mat-icon>
+                                    </button>
+                                    <button mat-icon-button color="primary" (click)="onEdit(pallet)" *ngIf="showProd">
+                                        <mat-icon >edit</mat-icon>
+                                    </button>
+                                    <button mat-icon-button color="primary" (click)="onStored(pallet)" *ngIf="showProd">
+                                        <mat-icon >local_shipping</mat-icon>
+                                    </button>
+                                    <button mat-icon-button color="primary" (click)="onPrint(pallet)" *ngIf="showStore">
+                                        <mat-icon >receipt</mat-icon>
+                                    </button>
+                                </mat-panel-description>
+                            </mat-expansion-panel-header>
+                            <mat-list>
+                                <mat-list-item *ngFor="let box of pallet.boxes">
+                                    <p>
+                                        <b>Ref: </b>{{box.order.ref}} <b>Fecha Ingreso: </b>{{box.order.inDate | date:
+                                        'dd/MM/yyyy'}} <b>Cajas: </b>{{box.units}}</p>
+                                </mat-list-item>
+                            </mat-list>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                </div>
+            </mat-tab>
+            <mat-tab label="Todos Los Pallets">
+                <div class="example-small-box mat-elevation-z4" *ngFor="let pallet of filteredPalletsCompany">
+                    <mat-accordion>
+                        <mat-expansion-panel (opened)="view != 'all' ? loadBoxes(pallet) : null">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    {{pallet.name}}
+                                </mat-panel-title>
+                                <mat-panel-description fxLayout="row" fxLayoutAlign="end center">
+                                    <button mat-icon-button color="primary" (click)="onEdit(pallet)" *ngIf="showProd">
+                                        <mat-icon *ngIf="view == 'all'">edit</mat-icon>
+                                    </button>
+                                    <button mat-icon-button color="primary" (click)="onStored(pallet)" *ngIf="showProd">
+                                        <mat-icon *ngIf="view == 'all'">local_shipping</mat-icon>
+                                    </button>
+                                    <button mat-icon-button color="primary" (click)="onPrint(pallet)" *ngIf="showStore">
+                                        <mat-icon >receipt</mat-icon>
+                                    </button>
+                                </mat-panel-description>
+                            </mat-expansion-panel-header>
+                            <mat-list>
+                                <mat-list-item *ngFor="let box of pallet.boxes">
+                                    <p>
+                                        <b>Ref: </b>{{box.order.ref}} <b>Fecha Ingreso: </b>{{box.order.inDate | date:
+                                        'dd/MM/yyyy'}} <b>Cajas: </b>{{box.units}}</p>
+                                </mat-list-item>
+                            </mat-list>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-button-toggle-group *ngIf="view == 'all'" fxLayout="row" fxLayoutAlign="center center">
+        <mat-button-toggle checked (click)="onChangeView(false)">Producción</mat-button-toggle>
+        <mat-button-toggle (click)="onChangeView(true)">Almacén</mat-button-toggle>
+    </mat-button-toggle-group>
+</mat-card>

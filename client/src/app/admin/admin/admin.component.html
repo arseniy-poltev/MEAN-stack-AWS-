@@ -1,0 +1,28 @@
+<mat-grid-list cols="2" rowHeight="1:1" >
+  <mat-grid-tile >
+    <mat-card class="admin-acces-left">
+      <mat-card-content>       
+        <button mat-icon-button color="primary" class="access-button" (click)="onClickRouterButton('/Users')">
+          <mat-icon aria-label="users" >person</mat-icon>
+        </button>
+        <button mat-icon-button color="primary" class="access-button">
+          <mat-icon aria-label="xxx">work</mat-icon>
+        </button>
+        <button mat-icon-button color="primary"class="access-button">
+          <mat-icon aria-label="xxx">%</mat-icon>
+        </button>
+        <button mat-icon-button color="primary" class="access-button">
+          <mat-icon aria-label="xxx">notifications</mat-icon>
+        </button>       
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-card>
+      <mat-card-title>
+        Departamentos:
+      </mat-card-title>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
+<router-outlet></router-outlet>

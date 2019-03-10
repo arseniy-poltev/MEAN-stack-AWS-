@@ -1,0 +1,20 @@
+<mat-card>    
+    <mat-card-actions >
+        <input  type="file" (change)="onFileSelected($event)" id="in-upload-img">
+    </mat-card-actions>
+    <mat-card-footer>
+        <div *ngIf="filesSelected" fxLayout="column" fxLayoutAlign="center center">                
+            <mat-progress-spinner mode="indeterminate">{{uploadProgress$ | async | json}}</mat-progress-spinner>
+            <span>Un momento por favor {{progressValue}}%</span>
+        </div>
+        <div *ngIf="fileNameError" class="container-text-danger">
+            <span class="text-danger">EL archivo seleccionado no corresponde con el parametro "visual" de la orden</span>            
+        </div>        
+    </mat-card-footer>
+</mat-card>
+    
+
+
+
+
+

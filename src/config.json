@@ -1,0 +1,12 @@
+{
+    "hostDB": "mongodb://localhost/metaproddev",
+    "hoursTokenExpired": 1,
+    "aws": {
+        "accessKeyId": "AKIAJYDW2V7EJUBCL7KQ",
+        "secretAccessKey": "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",
+        "s3": {
+            "Bucket": "metaworst",
+            "ACL": "public-read"
+        }
+    }
+}

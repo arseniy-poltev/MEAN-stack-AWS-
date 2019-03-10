@@ -1,0 +1,5 @@
+<div fxLayoutGap="10px" fxLayoutAlign="start center" class="actions">
+  <button mat-raised-button color="primary" *ngIf="isDesign" (click)="showNewOrderForm()">Nuevo</button>
+  <button mat-raised-button color="primary" *ngIf="isAuthorizedUser" (click)="onEdit()">Editar</button>
+  <button mat-raised-button color="primary" *ngIf="isAuthorizedUser" (click)="onDelete()">Eliminar</button>  
+</div>

@@ -1,0 +1,54 @@
+<div>
+    <form fxLayoutAlign="center center" fxLayout="column" #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <h3>{{data.title}}</h3>
+    <section fxLayout="column" fxFlexFill>
+      <mat-form-field>
+        <input 
+          matInput 
+          placeholder="Nombre" 
+          required          
+          [(ngModel)]="user.name"
+          name="name">
+      </mat-form-field>
+      <mat-form-field>
+        <input 
+          matInput 
+          type="email"
+          placeholder="Email"
+          required
+          [(ngModel)]="user.mail"
+          name="mail">
+      </mat-form-field>
+      <mat-form-field *ngIf ="!data.isEditMode">
+        <input 
+          matInput 
+          type="password"
+          placeholder="Password"          
+          [(ngModel)]="user.password"
+          name="password">
+      </mat-form-field>      
+      <mat-form-field>
+          <input 
+            type="text" 
+            matInput 
+            [matAutocomplete]="auto"
+            placeholder="Rol"
+            required
+            aria-label="Rol"
+            [(ngModel)]="user.rol"
+            name="rol">
+        </mat-form-field>
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option 
+          *ngFor="let rol of roles" 
+          [value]="rol.name">{{rol.name}}          
+        </mat-option>
+      </mat-autocomplete>      
+    </section>
+    <div fxLayout="row" fxFlexFill fxLayoutGap="10px" fxLayoutAlign="center center">
+      <button mat-raised-button type="submit" color="primary" *ngIf="!data.isEditMode">Crear</button>
+      <button mat-raised-button type="submit" color="primary" *ngIf="data.isEditMode">Actualizar</button>
+      <a mat-raised-button (click)="close()" color="secondary">Cancelar</a>
+    </div>
+</form>
+</div>

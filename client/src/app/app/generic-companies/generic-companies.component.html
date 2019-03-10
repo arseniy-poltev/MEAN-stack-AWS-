@@ -1,0 +1,10 @@
+<mat-tab-group mat-align-tabs="end">
+  <mat-tab *ngFor="let company of companies" [label]="company.name" fxLayout="column" fxFlex="95%" fxLayoutAlign="start start">
+      <app-generic-orders  
+      [company]="company"
+      [displayColumns]="displayColumns"
+      [state]="state"
+      [user]="user">
+    </app-generic-orders>
+  </mat-tab>
+</mat-tab-group>  

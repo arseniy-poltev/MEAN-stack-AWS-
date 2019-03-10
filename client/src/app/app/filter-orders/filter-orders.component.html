@@ -1,0 +1,71 @@
+<form #f="ngForm"  fxLayout="row" fxLayoutAlign="start start" >
+  <mat-form-field 
+    *ngIf="state == 'Disenio' || state == 'Prod'" 
+    class="field-filter">
+    <mat-select  
+      placeholder="Modelo" 
+      (selectionChange)="onChange()" 
+      [(ngModel)]="modelFilter" 
+      name="model">      
+      <mat-option 
+        *ngFor="let order of filterModelValues" 
+        value="{{order}}">
+        {{order}}
+    </mat-option>        
+    </mat-select>    
+  </mat-form-field>
+  <mat-form-field 
+    *ngIf="state == 'Disenio' || state == 'Prod'" 
+    class="field-filter">
+    <mat-select  
+      placeholder="Colores #" 
+      (selectionChange)="onChange()" 
+      [(ngModel)]="modelColorFilter" 
+      name="modelColor">      
+      <mat-option 
+        *ngFor="let colors of filterModelColorValues" 
+        value="{{colors}}">
+        {{colors}} Colores
+      </mat-option>        
+    </mat-select>
+  </mat-form-field>  
+  <mat-form-field 
+    *ngIf="state == 'Disenio' || state == 'Prod'" 
+    class="field-filter">
+    <mat-select  
+      placeholder="Referencia" 
+      (selectionChange)="onChange()" 
+      [(ngModel)]="referenceFilter" 
+      name="reference">      
+      <mat-option 
+        *ngFor="let reference of filterReferenceValues" 
+        value="{{reference}}">
+        {{reference}}
+      </mat-option>        
+    </mat-select>
+  </mat-form-field> 
+  <mat-form-field
+      *ngIf="state == 'Disenio' || state == 'Prod'" 
+      class="field-filter">
+      <mat-select    
+        placeholder="Colores" 
+        (selectionChange)="onChange()"   
+        [(ngModel)]="colorsFilter"
+        name=colores 
+        multiple
+        >
+        <mat-option 
+          *ngFor="let color of filterColorsValues"
+          [disabled]="!colorsFilterActive" 
+          [value]="color">
+          {{color}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+  
+    <button mat-icon-button color="primary" class="btn-filterAction" *ngIf="state == 'Disenio' || state == 'Prod'" (click)="cleanFilters()">
+      <mat-icon class="rowAction" >close</mat-icon>
+    </button>   
+</form>
+

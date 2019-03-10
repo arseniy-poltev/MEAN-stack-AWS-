@@ -1,0 +1,6 @@
+.mat-icon{    
+    cursor: pointer;
+}
+.mat-dialog-container{
+    height: inherit !important;
+}

@@ -1,0 +1,8 @@
+<a mat-list-item routerLink="/Auth" (click)="onToggle()" *ngIf="!userActive">
+  <mat-icon>person</mat-icon>
+  Login
+</a>
+<a mat-list-item (click)="logout()" *ngIf="userActive">
+  <mat-icon>input</mat-icon>
+  Logout
+</a>

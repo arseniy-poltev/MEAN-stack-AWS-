@@ -1,0 +1,23 @@
+mat-grid-tile {
+    background: #ffffff;
+}
+.admin-acces-left{
+    box-shadow: none;
+}
+.mat-icon-button.access-button{
+    border:1px solid ;
+    border-radius: 2px;
+    padding: 10px 10px 20px 10px;
+    height: 46%;
+    width: 46%;
+    line-height: 0;
+    margin: 2%;    
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12); 
+}
+.mat-icon-button.access-button  .material-icons{
+    font-size:100px;
+    height: 46%;
+    width: 46%;   
+    line-height: 100px;
+       
+}

@@ -1,0 +1,48 @@
+<section fxLayout="row" fxLayoutAlign="end center">
+  <button mat-icon-button color="primary" (click)="close()">
+      <mat-icon>close</mat-icon>
+  </button>
+</section>
+<mat-card>
+  <mat-card-title>{{pallet.name}} - {{counterBoxes}} &nbsp; Cajas</mat-card-title>
+  <mat-card-content>
+    <section *ngFor="let box of pallet.boxes; let i = index" fxLayout="row" fxLayoutAlign="space-between center">
+      <div class="indicator-container">
+        <mat-icon *ngIf="box.order.status === 'Store'">check</mat-icon>
+        <mat-icon *ngIf="box.order.status !== 'Store'">close</mat-icon>
+      </div>
+      <div class="img-container">
+        <p *ngIf="box.order.noSerie"><b>Pedido sin serie </b></p>
+        <img src="/app/assets/ImgEmpty.png" *ngIf="box.order.image == '' && !box.order.noSerie">
+        <img src="{{box.order.image}}" *ngIf="!box.order.noSerie"/>
+      </div>
+      <div class="info-container">
+        <div><b>Ref: &nbsp;</b>{{box.order.ref}} &nbsp; <b>Fecha: &nbsp;</b>{{getFormat(box.order.inDate)}}</div>
+        <div><b>Modelo: &nbsp;</b>{{box.order.product.name}}  &nbsp;</div>
+        <div>
+          <b>Colores: </b>&nbsp;
+          <ng-template ngFor let-color [ngForOf]="box.order.colors" let-i="index">
+            <span>{{color}}</span> &nbsp;
+          </ng-template>
+        </div>
+        <div><b>Unidades: </b> {{box.order.units}}</div>
+      </div>
+      <div class="counterBoxes-container">
+        <p>{{box.units}} &nbsp; Cajas </p>
+      </div>
+      <div class="actions-container" fxLayout="row" fxLayoutAlign="center center">
+        <button mat-icon-button color="primary" (click)="onRemove(i)" class="btn-icon-action">
+            <mat-icon class="icon-action">assignment_return</mat-icon>
+        </button>
+        <button mat-icon-button color="primary" (click)="onMove(box,i)" class="btn-icon-action">
+          <mat-icon class="icon-action">compare_arrows</mat-icon>
+        </button>
+      </div>
+    </section>
+  </mat-card-content>
+  <mat-card-actions fxLayout="row" fxLayoutAlign="center center">
+    <button mat-icon-button color="primary" (click)="onStored(pallet)" class="btn-icon-action">
+        <mat-icon class="icon-action">local_shipping</mat-icon>
+    </button>        
+  </mat-card-actions>
+</mat-card>

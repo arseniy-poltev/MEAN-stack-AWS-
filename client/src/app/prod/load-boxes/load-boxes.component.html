@@ -1,0 +1,23 @@
+<mat-card>
+    <div class="info-row"><b>Ref: &nbsp;</b>{{data.order.ref}} &nbsp; <b>Fecha: &nbsp;</b>{{getFormat(data.order.inDate)}}</div>
+    <div class="info-row"><b>Modelo: &nbsp;</b>{{data.order.product.name}} &nbsp;<b>Color: &nbsp;</b>{{data.order.modelColor}} </div>  
+    <div class="info-row">&nbsp;<b>Unidades: </b> {{data.order.units}}</div>  
+    <div class="info-row">
+      <b>Colores: </b>&nbsp;
+      <ng-template ngFor let-color [ngForOf]="data.order.colors" let-i="index">
+        <span>{{color}}</span> &nbsp;
+      </ng-template>
+    </div>
+  <mat-card-content>
+    <form fxLayoutAlign="center center" fxLayout="column" #f="ngForm">      
+      <mat-form-field>
+        <input matInput type="number" placeholder="Cantidad de Cajas" name="boxes" [(ngModel)]="counterBoxes" >        
+      </mat-form-field>
+      <mat-checkbox name="orederCompleted" [(ngModel)]="isCompleted">¿Pedido Completado?</mat-checkbox>
+    </form>
+  </mat-card-content>  
+  <mat-card-actions>
+      <button mat-raised-button (click)="close()" color="primary" [mat-dialog-close]="false">Cerrar</button>
+      <button mat-raised-button cdkFocusInitial (click)="onSubmit(f)" color="primary" [mat-dialog-close]="true">Aceptar</button>
+    </mat-card-actions>
+</mat-card>

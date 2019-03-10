@@ -1,0 +1,22 @@
+.headerAction{
+    font-size:50px !important;
+    cursor: pointer;
+}
+
+.btn-headerAction{
+    display: flex;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-bottom: -40px;
+    z-index:9;
+}
+.btn-headerAction.designButton{
+    background-image: url("../../../assets/cog-64.ico");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 40px 40px;
+    background-color: #e9e9e9;
+    box-shadow: none;
+    border: 1px solid #3F51B5;
+}
+

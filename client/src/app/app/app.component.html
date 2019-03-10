@@ -1,0 +1,33 @@
+<mat-sidenav-container>
+  <mat-sidenav #sidenav role="navigation">
+          <mat-nav-list>
+              <app-sidenav (toggle)="sidenav.toggle()" *ngIf="isLoad"></app-sidenav>
+          </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+      <mat-toolbar color="primary">
+          <div fxHide.gt-xs>
+              <button (click)="sidenav.toggle()" mat-icon-button *ngIf="isLoad">
+                  <mat-icon>menu</mat-icon>
+              </button>
+          </div>
+          <div>
+              <a routerLink="/">METAPROD</a>
+          </div>
+          <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+              <app-navlist *ngIf="isLoad"></app-navlist>
+          </div>
+      </mat-toolbar>
+      <main fxLayout="column" fxLayoutAlign="end center">
+          <div id="main-content" >
+              <router-outlet *ngIf="isLoad"></router-outlet>
+          </div>
+          <div fxLayoutAlign="center center" fxFlex>
+              <mat-spinner [style.display]="loadingPage? 'block' : 'none'"></mat-spinner>
+          </div>
+      </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+<app-router-protect></app-router-protect>
+
+    

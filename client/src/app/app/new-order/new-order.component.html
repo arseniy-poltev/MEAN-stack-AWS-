@@ -1,0 +1,105 @@
+<div>
+    <form fxLayoutAlign="center center" fxLayout="column" #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <h3>{{data.title}}</h3>
+    <section fxLayout="column" fxFlexFill>
+      <mat-form-field *ngIf="data.company">
+        <input 
+          matInput 
+          placeholder="Empresa" 
+          value="{{data.company.name}}"
+          required
+          aria-label="Company"
+          disabled>
+      </mat-form-field>
+      <mat-form-field>
+        <input 
+          matInput 
+          placeholder="Referencia"
+          required
+          [(ngModel)]="order.ref"
+          name="ref">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput 
+          [matDatepicker]="picker" 
+          placeholder="Fecha de entrega pedido"
+          [(ngModel)]="order.inDate"
+          name="inDate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      
+      <mat-form-field>
+        <input 
+          matInput 
+          placeholder="Unidades" 
+          type="number"
+          required
+          [(ngModel)]="order.units"
+          name="units">
+      </mat-form-field>
+      <mat-form-field *ngIf="data.company">
+        <input 
+          type="text" 
+          matInput 
+          [matAutocomplete]="auto"
+          placeholder="Modelo"
+          required
+          aria-label="Modelo"
+          [(ngModel)]="order.product.name"
+          name="product">
+      </mat-form-field>
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option 
+          *ngFor="let product of data.company.products" 
+          [value]="product.name">{{product.name}}</mat-option>
+      </mat-autocomplete>
+      <mat-form-field>
+        <input 
+          matInput 
+          placeholder="Color Modelo"
+          required
+          [(ngModel)]="order.modelColor"
+          name="modelColor">
+      </mat-form-field>   
+      <mat-checkbox 
+          class="example-margin" 
+          [(ngModel)]="order.noSerie" 
+          name="noSerie">
+          Sin serie
+      </mat-checkbox>      
+      <mat-form-field *ngIf="!order.noSerie">
+        <input 
+          matInput 
+          placeholder="Visual"            
+          [(ngModel)]="order.visual"
+          name="visual">
+      </mat-form-field>
+      <div fxLayout="column" *ngIf="!order.noSerie">
+        <div fxLayout="row" fxLayoutAlign="start center">
+          <label fxFlex="30%">Colores</label>
+          <div fxLayoutAlign="end center" fxFlex="70%">
+            <a mat-icon-button fxFlexAlign="end" (click)="addColor()">
+              <mat-icon>add</mat-icon>
+            </a>
+          </div>
+        </div>
+        <div fxLayoutGap="10px">
+          <div *ngFor="let color of colors; let in=index" [ngClass]="{'color-item': true}">
+            <input 
+              matInput 
+              type="text"              
+              [(ngModel)]="color.value"
+              placeholder="color"
+              name="color{{in}}">
+          </div>  
+        </div>          
+      </div>  
+    </section>
+    <div fxLayout="row" fxFlexFill fxLayoutGap="10px" fxLayoutAlign="center center" class="action-btn-container">
+      <button mat-raised-button type="submit" color="primary" *ngIf="!data.isEditMode">Crear</button>
+      <button mat-raised-button type="submit" color="primary" *ngIf="data.isEditMode">Actualizar</button>
+      <a mat-raised-button (click)="close()" color="secondary">Cancelar</a>
+    </div>
+</form>
+</div>

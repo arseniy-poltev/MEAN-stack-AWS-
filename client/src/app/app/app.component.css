@@ -1,0 +1,22 @@
+mat-sidenav-container, mat-sidenav-content,mat-sidenav{
+    height: 100%;
+}
+mat-sidenav{
+    width:200px;
+}
+main{
+    height: 85%;
+}
+#main-content{
+    width: 95%;
+    height: 100%;
+}
+a{
+    color:#fff;
+    text-decoration: none;
+    cursor: pointer;
+}
+mat-spinner{
+    position: absolute;
+    top:200px;
+}

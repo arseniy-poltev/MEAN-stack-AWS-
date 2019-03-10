@@ -1,0 +1,64 @@
+
+<div class="mat-elevation-z8" fxLayout="column" fxLayoutAlign="space-between end"  fxFlex="100%" fxFlexFill>
+  <div fxFlex="100%" fxLayout="row" fxFlexOffset="10px" fxFlexFill fxLayoutAlign="space-between center" class="header-section">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar...">
+    </mat-form-field>
+    <h1>Usuarios</h1>  
+  </div>  
+  <table mat-table [dataSource]="dataUsers" matSort fxFlex="100%" fxFlexFill >    
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="$event ? masterToggle() : null"
+                      [checked]="selection.hasValue() && isAllSelected()"
+                      [indeterminate]="selection.hasValue() && !isAllSelected()">
+        </mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let user">
+        <mat-checkbox (click)="$event.stopPropagation()"
+                      (change)="$event ? selection.toggle(user) : null"
+                      [checked]="selection.isSelected(user)">
+        </mat-checkbox>
+      </td>
+    </ng-container>    
+    <ng-container matColumnDef="image">
+      <th mat-header-cell *matHeaderCellDef>  </th>
+      <td mat-cell *matCellDef="let user"> 
+        <mat-icon aria-label="users" class="user-icon">person</mat-icon>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="info">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Información </th>
+      <td mat-cell *matCellDef="let user"> 
+          <div><b>{{user.name}} &nbsp;</b></div>
+          <div><b>{{user.mail}} &nbsp;</b></div>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="rol">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Rol </th>
+      <td mat-cell *matCellDef="let user">
+          <b>{{user.rol}} &nbsp;</b>
+      </td>
+    </ng-container>  
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Acciones </th>
+      <td mat-cell *matCellDef="let user">
+          <button mat-icon-button color="primary" class="btn-rowAction" (click)="onEdit(user)"> 
+            <mat-icon aria-label="users" class="rowAction">edit</mat-icon>
+          </button>
+      </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns" style="display:none"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+        (click)="selection.toggle(row)">
+    </tr>
+  </table>
+  <div fxFlex="100%" fxLayout="row" fxFlexOffset="10px" fxFlexFill fxLayoutAlign="space-between center" >
+    <div fxLayoutGap="10px" fxLayoutAlign="start center" class="actions">
+      <button mat-raised-button color="primary" (click)="showNewUserForm()">Nuevo</button>      
+      <button mat-raised-button color="primary" (click)="onDelete()">Eliminar</button>  
+    </div>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div> 
+</div>

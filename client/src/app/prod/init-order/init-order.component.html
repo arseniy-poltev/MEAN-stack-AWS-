@@ -1,0 +1,25 @@
+<mat-card>
+  <mat-card-title-group>
+      <mat-card-title>
+        {{getFormat(data.order.inDate)}} - {{order.ref}} - {{order.product.name}} - {{order.modelColor}}
+      </mat-card-title>
+      <mat-card-subtitle *ngFor="let comment of order.comments; let isLast = last">
+        <cite *ngIf="isLast">{{order.units}} - {{comment.comment}} - {{data.company.name}} </cite>        
+      </mat-card-subtitle>
+  </mat-card-title-group>
+  <p *ngIf="order.noSerie"><b>Pedido sin serie </b></p>
+  <img 
+    src="https://metaprodfotolitosblob.blob.core.windows.net/images/ImgEmpty.png" 
+    *ngIf="order.image == '' && !order.noSerie" 
+    class="initOrder-img">
+  <img 
+    src="{{order.image}}" 
+    class="initOrder-img"
+    *ngIf="!order.noSerie"/>
+  <mat-card-actions>
+      <button mat-raised-button (click)="close()" color="primary">Cerrar</button>
+      <button mat-raised-button (click)="onInitOrder()" cdkFocusInitial *ngIf="showInitButton" color="primary">Iniciar Producción</button>
+      <button mat-raised-button cdkFocusInitial (click)="onSavedOrder()" *ngIf="showSaveButton" color="primary">Guardar Pedido</button>
+      <button mat-raised-button cdkFocusInitial (click)="onAbortOrder()" *ngIf="showSaveButton" color="primary">Dejar Pedido</button>
+    </mat-card-actions>
+</mat-card>

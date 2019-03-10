@@ -1,0 +1,15 @@
+.btnDisabled{
+    pointer-events: none;
+}
+.mat-button-toggle-group{
+    border: none ;
+    margin-top: 10px;
+}
+.mat-button-toggle-checked{
+    color: #ffffff ;
+    background-color: #3f51b5 ;
+}
+.mat-button-toggle{
+    margin: 20px 0px 0px 0px;
+    border-radius: 4px;
+}

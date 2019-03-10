@@ -1,0 +1,19 @@
+.indicator-container,
+.img-container,
+.info-container,
+.counterBoxes-container,
+.actions-container{
+    margin:10px 20px;
+}
+.icon-action{
+    font-size: 40px;
+}
+.btn-icon-action{
+    width: 50px;
+}
+.img-container{
+    max-width: 20%;
+}
+.img-container img{
+    max-width: 100%;
+}

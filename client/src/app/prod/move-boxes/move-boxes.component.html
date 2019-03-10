@@ -1,0 +1,16 @@
+<mat-card>  
+  <mat-card-content>
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+      <mat-form-field>
+        <mat-select  placeholder="Seleccione el pallet de destino" [(ngModel)]="newPallet" name="newPallet">          
+          <mat-option *ngFor="let pallet of palletsCompany; let i = index" value="{{i}}">{{pallet.name}}</mat-option>        
+        </mat-select>
+      </mat-form-field> 
+      <div fxLayout="row" fxFlexFill fxLayoutGap="10px" fxLayoutAlign="center center">
+        <button mat-raised-button type="submit" color="primary">Aceptar</button>      
+        <a mat-raised-button (click)="onClose()" color="secondary">Cancelar</a>
+      </div>         
+    </form>      
+  </mat-card-content>
+</mat-card>
+

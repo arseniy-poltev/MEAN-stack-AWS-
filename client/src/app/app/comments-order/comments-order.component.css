@@ -1,0 +1,12 @@
+.comments-dialog .mat-icon{
+    cursor:pointer;
+}
+.comments-dialog .mat-card-subtitle{
+    margin-bottom: 5px !important;
+}
+.comments-dialog .mat-card-content{
+    margin-left: 5px
+}
+.comments-dialog .form-comment{
+    width: 100%
+}
